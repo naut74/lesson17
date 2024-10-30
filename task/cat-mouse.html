@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat & Mouse</title>
+</head>
+<body>
+
+    <script>
+        class Rat {
+            constructor(name, speed, weight) {
+                this.name_rat = name;
+                this.speed_rat = speed;
+                this.weight_rat = weight;
+                this.isAlive = true;
+            }
+            getStatus() {
+                return this.isAlive? `${this.name_rat} is alive` : `${this.name_rat} is dead`;
+            }
+            ratMessage() {
+                return "chít chít chít";
+            };
+        }
+
+        class Cat {
+            constructor(name, speed, weight) {
+                this.name_cat = name;
+                this.speed_cat = speed;
+                this.weight_cat = weight;
+            }
+            catMessage() {
+                return "meo meo meo";
+            }
+            catchRat(rat){
+                if(this.speed_cat > this.speed_rat){
+                    this.isAlive = false;
+                    console.log(this.name_cat + " has caught " + this.name_rat);
+                    
+                } else {
+                    this.isAlive = true;
+                    console.log(this.name_cat + " couldn't catch " + this.name_rat);
+                }
+            }
+            eatRat(rat){
+                if(this.catchRat()){
+                    this.weight_cat += this.weight_rat;
+                    this.weight_rat = 0;
+                    console.log(this.name_cat + " has eaten " + this.name_rat);
+                    rat.isAlive = false;
+                }
+                else {
+                    console.log(this.name_cat + " couldn't catch " + this.name_rat);
+                }
+            }
+        }
+
+        let jerry = new Rat("Rat", 10, 1);
+        let tom = new Cat("Cat", 20, 2);
+
+        console.log(tom.catMessage());
+        console.log(jerry.ratMessage());
+
+        tom.eatRat(jerry);
+        console.log(jerry.getStatus());
+        
+    </script>
+</body>
+</html>
